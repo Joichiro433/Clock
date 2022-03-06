@@ -36,13 +36,8 @@ def get_time():
 
 
 if __name__ == '__main__':
-
-    # キャンバス作成
     canvas = tkinter.Canvas(master=None, width=WIDTH, height=HEIGHT, bg='#1c1c1c')
-
-    # 円表示
     canvas.create_oval(10, 10, 390, 390, outline='white', fill='#1c1c1c', width=4)
-
     # 目盛り表示
     for mark in range(0, 360, 30):
         mark_i_x = round(math.cos(math.radians(mark))*(RADIUS-MARK))
@@ -50,15 +45,11 @@ if __name__ == '__main__':
         mark_o_x = round(math.cos(math.radians(mark))*RADIUS)
         mark_o_y = round(math.sin(math.radians(mark))*RADIUS)
         canvas.create_line((CENTER[0]+mark_i_x, CENTER[1]+mark_i_y), (CENTER[0]+mark_o_x, CENTER[1]+mark_o_y), width=3, fill='white')
-
     # キャンバス表示
     canvas.pack()
 
-    # スレッド作成
+    # 針の描画をスレッドで実行
     thread = threading.Thread(target=get_time, daemon=True)
-
-    # スレッド開始
     thread.start()
 
-    # イベントループ
     canvas.mainloop()

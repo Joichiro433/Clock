@@ -1,3 +1,0 @@
-numpy==1.22.2
-nptyping==1.4.4
-pyqtgraph==0.12.4
